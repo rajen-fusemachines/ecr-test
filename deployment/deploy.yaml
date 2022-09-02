@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecrapp # Set the name of the deployment
+spec: 
+  selector:
+    matchLabels:
+      app: ecrapp
+  replicas: 2 # Set the number of pods
+  template: 
+    metadata:
+      labels: 
+        app: ecrapp
+    spec:
+      containers:
+      - name: ecrapp # Sets the container name
+        image: 549847039622.dkr.ecr.us-west-2.amazonaws.com/argo-dev # Sets the container image
+        ports:
+        - containerPort: 8000 # Exposes container port                              

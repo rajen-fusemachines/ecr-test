@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application 
+metadata:
+  name: devops-application # Name of the application.
+  namespace: argocd # The namespace where the application should be created.
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: 549847039622.dkr.ecr.us-west-2.amazonaws.com/argo-dev
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: master
+    #argocd-image-updater.argoproj.io/pull-secret: secret:argocd/dockerhub-creds                            
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rajen-fusemachines/ecr-test # Remote Github repository where ArgoCD should pull configurations from.
+    targetRevision: HEAD # The last commit in the remote repository.
+    path: deployment # Track and sync the dev path in the repository.
+  destination: 
+    server: https://kubernetes.default.svc # Address of the Kubernetes cluster.
+    namespace: ecr # Indicates that ArgoCD should apply the configurations from the git repository to the myapp namespace.
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true # Create the myapp namespace if it doesnt exits.
+
+    automated:
+      selfHeal: true # Automatically sync changes from the Git repository.
+      prune: true
