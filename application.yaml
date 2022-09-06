@@ -6,9 +6,7 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: 549847039622.dkr.ecr.us-west-2.amazonaws.com/argo-dev
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
-    argocd-image-updater.argoproj.io/git-branch: master
-    argocd-image-updater.argoproj.io/argo-dev.pull-secret: secret:argocd/aws-ecr-creds
-    #argocd-image-updater.argoproj.io/argo-dev.pull-secret: secret:argocd/dockerhub-creds                            
+    argocd-image-updater.argoproj.io/git-branch: master                      
 spec:
   project: default
   source:
