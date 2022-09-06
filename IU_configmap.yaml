@@ -9,6 +9,7 @@ data:
     - name: ECR
       api_url: https://549847039622.dkr.ecr.us-west-2.amazonaws.com
       prefix: 549847039622.dkr.ecr.us-west-2.amazonaws.com
+      credentials: secret:argocd/aws-ecr-creds#creds
       default: true
       ping: yes
       insecure: no
