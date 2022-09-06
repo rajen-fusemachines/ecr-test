@@ -10,8 +10,12 @@ data:
       api_url: https://549847039622.dkr.ecr.us-west-2.amazonaws.com
       prefix: 549847039622.dkr.ecr.us-west-2.amazonaws.com
       credentials: secret:argocd/aws-ecr-creds#creds
-      default: true
       ping: yes
       insecure: no
       credsexpire: 11h
+    - name: Docker Hub
+      prefix: docker.io
+      api_url: https://ibanez6123.docker.io
+      credentials: secret:argocd/dockerhub-creds#creds
+      defaultns: library
 binaryData: {}
